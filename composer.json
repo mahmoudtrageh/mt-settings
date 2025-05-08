@@ -1,0 +1,34 @@
+{
+    "name": "mt-settings/laravel-settings",
+    "description": "A simple settings management system for Laravel applications with RTL support",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahmoud Taha",
+            "email": "geo.mahmoudtaha@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MtSettings\\LaravelSettings\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MtSettings\\LaravelSettings\\SettingsServiceProvider"
+            ],
+            "aliases": {
+                "Settings": "MtSettings\\LaravelSettings\\Facades\\Settings"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "version": "1.0.0"
+}
