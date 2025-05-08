@@ -10,9 +10,7 @@ A simple and elegant settings management system for Laravel applications.
 
 - 🚀 Easy to install and use
 - 🔒 Secure and optimized for performance
-- 🌐 Full RTL support and Arabic localization
 - 💾 Cached settings for better performance
-- 🎨 Beautiful admin UI with Tailwind CSS
 - 🧩 Organized settings by categories
 - 🔄 Simple API to get/set settings in your application
 
@@ -23,23 +21,6 @@ You can install the package via composer:
 ```bash
 composer require mt-settings/laravel-settings
 ```
-
-## 🔧 Setup
-
-### Quick Installation
-
-Run the installation command:
-
-```bash
-php artisan settings:install
-```
-
-This will:
-- Publish the configuration file
-- Publish the migrations
-- Publish the views
-- Ask if you want to run migrations
-- Attempt to add the settings link to your admin sidebar
 
 ### Manual Installation
 
@@ -55,13 +36,7 @@ php artisan vendor:publish --tag=laravel-settings-config
 php artisan vendor:publish --tag=laravel-settings-migrations
 ```
 
-3. Publish the views (optional):
-
-```bash
-php artisan vendor:publish --tag=laravel-settings-views
-```
-
-4. Run the migrations:
+3. Run the migrations:
 
 ```bash
 php artisan migrate

@@ -27,7 +27,5 @@
                 "Settings": "MtSettings\\LaravelSettings\\Facades\\Settings"
             }
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

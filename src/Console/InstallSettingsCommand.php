@@ -34,14 +34,6 @@ class InstallSettingsCommand extends Command
         // Publish migrations
         $this->publishMigrations();
         
-        // Publish views
-        $this->publishViews();
-        
-        // Add to sidebar menu (optional)
-        if ($this->confirm('Would you like to add Settings to your admin sidebar menu?', true)) {
-            $this->addToSidebar();
-        }
-        
         $this->info('Laravel Settings Package installed successfully!');
         
         if ($this->confirm('Would you like to run the migrations now?', true)) {
@@ -80,70 +72,5 @@ class InstallSettingsCommand extends Command
             '--tag' => 'laravel-settings-migrations',
             '--force' => $this->option('force'),
         ]);
-    }
-    
-    /**
-     * Publish view files.
-     */
-    private function publishViews()
-    {
-        $this->info('Publishing views...');
-        
-        if ($this->option('force') || !File::isDirectory(resource_path('views/vendor/laravel-settings'))) {
-            $this->call('vendor:publish', [
-                '--tag' => 'laravel-settings-views',
-                '--force' => $this->option('force'),
-            ]);
-        } else {
-            $this->info('Views already exists. Use --force to overwrite.');
-        }
-    }
-    
-    /**
-     * Add to sidebar menu (if exists).
-     */
-    private function addToSidebar()
-    {
-        $sidebarPath = resource_path('views/admin/partials/sidebar.blade.php');
-        
-        if (File::exists($sidebarPath)) {
-            $sidebar = File::get($sidebarPath);
-            
-            // Check if settings menu item already exists
-            if (strpos($sidebar, 'settings.index') !== false) {
-                $this->info('Settings menu item already exists in sidebar.');
-                return;
-            }
-            
-            // Add settings menu item snippet
-            $settingsMenuItem = <<<'EOT'
-<!-- Settings -->
-<li class="nav-item">
-    <a href="{{ route('settings.index') }}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-cogs"></i>
-        <p>إعدادات النظام</p>
-    </a>
-</li>
-EOT;
-            
-            // Find where to insert the menu item
-            $insertPosition = strrpos($sidebar, '</ul>');
-            
-            if ($insertPosition !== false) {
-                $newSidebar = substr_replace(
-                    $sidebar,
-                    $settingsMenuItem . PHP_EOL . PHP_EOL . '    ',
-                    $insertPosition,
-                    0
-                );
-                
-                File::put($sidebarPath, $newSidebar);
-                $this->info('Settings menu item added to sidebar.');
-            } else {
-                $this->warn('Could not automatically add to sidebar. Please add manually.');
-            }
-        } else {
-            $this->warn('Sidebar file not found. Please add settings menu item manually.');
-        }
     }
 }
