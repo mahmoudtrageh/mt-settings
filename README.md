@@ -1,6 +1,6 @@
 # Laravel Settings
 
-A simple and elegant settings management system for Laravel applications with full RTL support.
+A simple and elegant settings management system for Laravel applications.
 
 ![Laravel Settings](https://img.shields.io/badge/Laravel-Settings-red.svg) 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -21,7 +21,7 @@ A simple and elegant settings management system for Laravel applications with fu
 You can install the package via composer:
 
 ```bash
-composer require your-vendor-name/laravel-settings
+composer require mt-settings/laravel-settings
 ```
 
 ## 🔧 Setup
